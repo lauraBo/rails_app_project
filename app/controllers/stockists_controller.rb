@@ -3,10 +3,17 @@ class StockistsController < ApplicationController
   before_action :find_stockist, except: [:index, :new, :create]
 
 
+
   def index
     @stockists = Stockist.all
-    @stockist = Stockist.new
+		@stockist = Stockist.new
+
+		respond_to do |f|
+			f.html {render :index}
+			f.json {render :json => @stockists}
+		end
   end
+
 
   def show
 

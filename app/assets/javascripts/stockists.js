@@ -15,8 +15,6 @@ Stockist.prototype.renderLI = function(){
 return Stockist.template(this)
 }
 
-
-
 $(document).ready(function(){
 $('form#new_stockist').on("submit", function(e){
   alert("You clicked SUBMIT!!")
@@ -25,16 +23,20 @@ $('form#new_stockist').on("submit", function(e){
   var action = $form.attr('action');
   var params = $form.serialize();
 
+  console.log("params: ", params);
   $.ajax({
-url: action,
-data: params,
-dataType: 'json',
-method: "POST"
-})
+    type: 'POST',
+    url: action,
+    data: params,
+    dataType: 'json'
+  })
 
-.success(function(json){
-  var newstockist = new Stockist(json);
-  var stockistLi = newstockist.renderLI()
+  .success(function (json) {
+
+    console.log('json: ', json);
+    var newstockist = new Stockist(json);
+    var stockistLi = newstockist.renderLI()
+
 $('ul.new-stockist').append(stockistLi)
 })
 .error(function(response){
@@ -43,6 +45,36 @@ console.log('you broke it?', response)
 
 })
 })
+
+
+
+
+$("button").on("click", function() {
+  const username = $("#user-input").val();
+
+  $.ajax({
+    url: `https://api.github.com/users/${username}`,
+    type: "GET"
+  }).done(data => userSuccess(data));
+
+  fetch(`https://api.github.com/users/${username}/followers`)
+    .then(response => response.json())
+    .then(addFollowersToDom);
+});
+
+function userSuccess(data) {
+  $("#name")
+    .empty()
+    .append("Name: " + data.name);
+}
+
+function addFollowersToDom(followersArray) {
+  const followersList = $(".followers")
+  followersList.empty();
+  followersArray.forEach(follower => {
+    followersList.append(`<li>${follower.login}</li>`);
+  });
+}
 
 
 
