@@ -8,12 +8,17 @@
 <h1> Stockists Index </h1>
 <br>
 
-
+<h3> Add New Stockist Form </h3>
 <div id="stockist-form">
 <%= form_for(@stockist) do |f| %>
 <%= f.text_area :name %>
 <%= f.text_area :address %>
 <%= f.submit :submit %>
+<% end %> <br>
+
+<% @stockists.each do |s| %>
+<h4><%= s.name %><h4>
+<h5><%= s.address %><h5>
 <% end %>
 
 <ul class="new-stockist"></ul>
