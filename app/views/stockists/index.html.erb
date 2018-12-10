@@ -16,13 +16,13 @@
 <%= f.submit :submit %>
 <% end %> <br>
 
-<% @stockists.each do |s| %>
-<h4><%= s.name %><h4>
-<h5><%= s.address %><h5>
-<% end %>
-
 <ul class="new-stockist"></ul>
   </div>
+
+<% @stockists.each do |s| %>
+<h4><%= link_to s.name, stockist_path(s) %><h4>
+<h5><%= s.address %><h5>
+<% end %>
 
 
 <script id="stockist-template" type="text/x-handlebars-template">
