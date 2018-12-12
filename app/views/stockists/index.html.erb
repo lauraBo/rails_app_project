@@ -19,10 +19,7 @@
 <ul class="new-stockist"></ul>
   </div>
 
-<% @stockists.each do |s| %>
-<h4><%= link_to s.name, stockist_path(s) %><h4>
-<h5><%= s.address %><h5>
-<% end %>
+<div id="stockist-detail"></div>
 
 
 <script id="stockist-template" type="text/x-handlebars-template">
@@ -33,5 +30,12 @@
     </div>
   </div>
 </script>
+
+
+<div id='stockists-index'>
+	<% @stockists.each do |stockist| %>
+	<%= link_to stockist.name, stockist_path(stockist), id: stockist.id %><br>
+	<% end %>
+</div>
 
 </body>

@@ -1,3 +1,50 @@
+$(() => {
+	// listenForSubmit()
+	listenForStockistClick()
+});
+
+////$('form#new_stockist').on("submit", function(e){
+  //alert("You clicked SUBMIT!!")
+
+function clearOutStockistsDiv() {
+	document.getElementById('stockist-detail').innerHTML = ''
+}
+
+function listenForStockistClick(e) {
+	$('div#stockists-index a').on('click', function (e) {
+    alert("You clicked SUBMIT!!")
+		e.preventDefault()
+		let id = this.attributes[0].textContent
+		getStockistDetails(id)
+	})
+}
+
+// 1st way ....
+function getStockistDetails(id) {
+	$.ajax({
+		type: "get",
+		url: '/stockists/' + id,
+		dataType: 'json',
+		success: function (response) {
+			console.log("response: ", response)
+			loadStockistDetails(response)
+		}
+	})
+}
+
+
+function loadStockistDetails(data) {
+	clearOutStockistsDiv()
+	let dataHTML = (`
+		<fieldset>
+			<p>${data.name}</p>
+			<p>${data.address}</p>
+		</fieldset>
+	`)
+
+	document.getElementById('stockist-detail').innerHTML += dataHTML
+}
+
 
   function Stockist(attributes){
 this.name = attributes.name;
@@ -49,32 +96,7 @@ console.log('you broke it?', response)
 
 
 
-$("button").on("click", function() {
-  const username = $("#user-input").val();
 
-  $.ajax({
-    url: `https://api.github.com/users/${username}`,
-    type: "GET"
-  }).done(data => userSuccess(data));
-
-  fetch(`https://api.github.com/users/${username}/followers`)
-    .then(response => response.json())
-    .then(addFollowersToDom);
-});
-
-function userSuccess(data) {
-  $("#name")
-    .empty()
-    .append("Name: " + data.name);
-}
-
-function addFollowersToDom(followersArray) {
-  const followersList = $(".followers")
-  followersList.empty();
-  followersArray.forEach(follower => {
-    followersList.append(`<li>${follower.login}</li>`);
-  });
-}
 
 
 
