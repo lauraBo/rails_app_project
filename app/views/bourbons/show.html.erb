@@ -7,9 +7,16 @@
 <p class="bourbonDescription"><%= @bourbon.description %></p>
 <p class="bourbonAge"> AGE:<%= @bourbon.age %></p>
 <p class="bourbonGrain"> GRAIN:<%= @bourbon.grain %></p>
+<p class=bourbonStockistName> STOCKISTS:
+<% @bourbon.stockists.uniq.each do |stockist| %>
+
+<%= link_to stockist.name, stockist_path(stockist) %><br>
+<% end %>
+
+
 
 </br>
-</br>
+<br>
 <h3>List of Stockists:</h3>
 <% @bourbon.stockists.uniq.each do |stockist| %>
 
@@ -46,6 +53,7 @@ $(function () {
       $(".bourbonDescription").text(data["description"]);
       $(".bourbonAge").text(data["age"]);
       $(".bourbonGrain").text(data["grain"]);
+      $(".bourbonStockistName").text(data["stockist"]);
       // re-set the id to current on the link
       $(".js-next").attr("data-id", data["id"]);
     });
