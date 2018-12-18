@@ -12,14 +12,16 @@
 
 <div id="stockist-form">
 
-<%= form_for(@stockist) do |f| %>
+<%= form_for(@stockist)   do |f| %>
 
 <%= f.text_field :name, placeholder: "name" %>
 <%= f.text_area :address, placeholder: "address" %>
 <%= f.submit :submit %>
 <% end %> <br>
+</div>
+document.getElementById("cform").reset();
 
-
+<div>
 <ul class="new-stockist"></ul>
   </div>
 

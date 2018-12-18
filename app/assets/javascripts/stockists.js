@@ -70,10 +70,9 @@ $('form#new_stockist').on("submit", function(e){
   var action = $form.attr('action');
   var params = $form.serialize();
 
-  function resetform() {
-  document.getElementById("stockist-form")[0].reset();
-  }
-
+  //function resetform() {
+  //document.getElementById("stockist-form")[0].reset();
+  //}
   console.log("params: ", params);
   $.ajax({
     type: 'POST',
@@ -101,6 +100,7 @@ console.log('you broke it?', response)
     //this.reset();
 //});
 
+$("#new_stockist")[0].reset();
 })
 })
 
