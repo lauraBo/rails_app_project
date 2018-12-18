@@ -21,8 +21,8 @@ class StockistsController < ApplicationController
 			f.html {render :index}
 			f.json {render :json => @stockist}
 		end
-
   end
+
 
   def new
     @stockist = Stockist.new

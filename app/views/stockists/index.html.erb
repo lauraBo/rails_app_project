@@ -9,12 +9,16 @@
 <br>
 
 <h3> Add New Stockist Form </h3>
+
 <div id="stockist-form">
+
 <%= form_for(@stockist) do |f| %>
-<%= f.text_area :name %>
-<%= f.text_area :address %>
+
+<%= f.text_field :name, placeholder: "name" %>
+<%= f.text_area :address, placeholder: "address" %>
 <%= f.submit :submit %>
 <% end %> <br>
+
 
 <ul class="new-stockist"></ul>
   </div>

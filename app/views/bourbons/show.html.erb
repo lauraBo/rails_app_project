@@ -1,4 +1,6 @@
-
+<head>
+<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
+</head>
 <a href="#" class="js-next" data-id="<%=@bourbon.id%>">Next bourbon</a>
 
 
@@ -7,10 +9,12 @@
 <p class="bourbonDescription"><%= @bourbon.description %></p>
 <p class="bourbonAge"> AGE:<%= @bourbon.age %></p>
 <p class="bourbonGrain"> GRAIN:<%= @bourbon.grain %></p>
-<p class=bourbonStockistName> STOCKISTS: <br>
+</br>
+STOCKISTS
+<h4><div id="bourbonStockistName">  </div> </h4>
 <% @bourbon.stockists.uniq.each do |stockist| %>
 
-<%= stockist.name %><br>
+<%= link_to stockist.name, stockist_path(stockist) %></br>
 <% end %>
 
 <%
@@ -50,15 +54,30 @@ $(function () {
   $(".js-next").on("click", function() {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/bourbons/" + nextId + ".json", function(data) {
-
       $(".bourbonName").text(data["name"]);
       $(".bourbonDescription").text(data["description"]);
       $(".bourbonAge").text(data["age"]);
       $(".bourbonGrain").text(data["grain"]);
 
-      
+
       $(".distilleryName").text(data["distillery"]["name"]);
-      $(".bourbonStockistName").text(data["stockists"]);
+       var result = $('#bourbonStockistName');
+      var html = '';
+      var array = data["stockists"];
+      if (array) {
+          $.each(array, function (i) {
+              $.each(array[i], function (key, value) {
+                  html += ('<li>' + key + ': ' + value + '</li>');
+              });
+              result.html(html);
+            });
+          };
+
+      //for (i in data.stockists) {
+  //x += "<h1>" + data.stockists[i].name + "</h1>"
+//};
+
+// $(".bourbonStockistName").text(data["stockists"]);
       // re-set the id to current on the link
       $(".js-next").attr("data-id", data["id"]);
     });
