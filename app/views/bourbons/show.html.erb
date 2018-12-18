@@ -11,12 +11,13 @@
 <p class="bourbonGrain"> GRAIN:<%= @bourbon.grain %></p>
 </br>
 STOCKISTS
-<h4><div id="bourbonStockistName">  </div> </h4>
-<% @bourbon.stockists.uniq.each do |stockist| %>
+<h4><div id="bourbonStockistName"> <% @bourbon.stockists.uniq.each do |stockist| %>
 
-<%= link_to stockist.name, stockist_path(stockist) %></br>
-<% end %>
+<%= stockist.name  %></br>
+<%= stockist.address  %></br>
+<% end %> </h4>
 
+</div>
 <%
 =begin %>
 </br>
@@ -31,7 +32,7 @@ STOCKISTS
 
 </br>
 </br>
-Stockist Notes :
+ Stockist Notes :
 </br>
 
   <% @bourbon.bourbon_stockists.each do |bourbon_stockist| %>
@@ -61,6 +62,7 @@ $(function () {
 
 
       $(".distilleryName").text(data["distillery"]["name"]);
+      $('#bourbonStockistName').html = '';
        var result = $('#bourbonStockistName');
       var html = '';
       var array = data["stockists"];
