@@ -1,6 +1,7 @@
 
 $(() => {
 	// listenForSubmit()
+	console.log('stockists.js loaded')
 	listenForStockistClick()
 });
 
