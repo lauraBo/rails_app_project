@@ -18,7 +18,8 @@ end
          else
            @bourbons = @distillery.bourbons #nested resource route
            #render 'bourbons/index', :layout => false
-           render :json => @bourbons
+        render :json => @bourbons
+       
          end
     else
     @bourbons = Bourbon.all

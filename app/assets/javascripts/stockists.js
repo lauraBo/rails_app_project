@@ -1,7 +1,12 @@
 
-$(() => {
+//$(() => {
 	// listenForSubmit()
-	console.log('stockists.js loaded')
+	//console.log('stockists.js loaded')
+	//listenForStockistClick()
+//});
+
+$( document ).on('turbolinks:load', function() {
+  console.log("It works on each visit!")
 	listenForStockistClick()
 });
 
