@@ -1,16 +1,31 @@
+<div class="row">        <!-- create the row -->
+  <div class="col s6">
+      <div class="card blue-grey lighten-4">  <!-- create the card -->
+        </br>
+        <h5 class="center-align">Welcome <%= @user.username %>! </h5>
+</br>
+<div class="card-image">              <!-- card image -->
+  <img src="/assets/bourbon1.jpg">      <!-- img -->
+</div>
+</div>
+</div>
+<div class="col s6">  <!-- create the second column div -->
 
-Welcome <%= @user.username %>! </br>
+  <!-- add collection classes to the list elements -->
+  <ul class="collection with-header">
 
-<h4><%= @user.email %></h4>
-<h4><%= @user.uid %></h4>
-<img src="<%= @user.image %>"> </br>
-</br>
-</br>
-<%= link_to "Bourbons Index List", bourbons_path %> </br>
-</br>
-<%= link_to "Stockists Index List", stockists_path %></br>
-</br>
-<%= link_to "Distilleries Index List", distilleries_path %></br>
-</br>
-</br>
-<%= link_to "Log Out", logout_path %></br>
+<li class="collection-item"><%= link_to "Bourbons Index List", bourbons_path %></li>
+<div class="card-image">              <!-- card image -->
+  <img src="/assets/bourbon2.jpg" class="circle responsive-img">      <!-- img -->
+</div>
+<li class="collection-item"><%= link_to "Stockists Index List", stockists_path %></li>
+<div class="card-image">              <!-- card image -->
+  <img  src="/assets/stockist.png" class="circle responsive-img">      <!-- img -->
+</div>
+<li class="collection-item"><%= link_to "Distilleries Index List", distilleries_path %></li>
+<div class="card-image">              <!-- card image -->
+  <img  src="/assets/distillerycut.png" class="circle responsive-img">      <!-- img -->
+</div>
+</ul>
+</div>
+</div>

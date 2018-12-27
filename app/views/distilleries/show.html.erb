@@ -10,14 +10,8 @@
 
 <h1><%= @distillery.name %></h1>
 <h2><%= @distillery.address %> </h2></br>
-<h3> List of Bourbons produced by this distillery: </h3> </br>
+<h5> List of Bourbons produced by this distillery: </h5>
 
-
- <%#<ul>
-<% @distillery.bourbons.each do |bourbon| %>
- <%#<li><%= link_to bourbon.name, distillery_bourbon_path(@distillery, bourbon) %><%#</li>
- <%#<% end %>
- <%#</ul>%>
 
  <p>
    <%= link_to 'Load Bourbons', distillery_bourbons_path(@distillery), :class => "load_bourbons" %>

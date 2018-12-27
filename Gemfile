@@ -36,7 +36,7 @@ gem 'active_model_serializers'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-
+gem 'materialize-sass'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

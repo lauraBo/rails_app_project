@@ -1,4 +1,14 @@
-<ul class="nav">
-  <li><%= link_to 'HomePage', welcome_path %></li>
-  <%= render 'layouts/navigation_links' %>
-</ul>
+
+
+
+<!-- beginning of new code -->
+  <nav>
+    <div class="nav-wrapper blue-grey darken-1">
+      <a class="brand-logo center">BOURBON HUNTER</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><%= link_to 'HomePage', welcome_path %></li>
+          <li><%= link_to "Log Out", logout_path %></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- end of new code -->

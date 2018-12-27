@@ -10,12 +10,14 @@
 <p class="bourbonAge"> AGE:<%= @bourbon.age %></p>
 <p class="bourbonGrain"> GRAIN:<%= @bourbon.grain %></p>
 </br>
-STOCKISTS
-<h4><div id="bourbonStockistName"> <% @bourbon.stockists.uniq.each do |stockist| %>
+STOCKISTS:
+</br>
+<div id="bourbonStockistName"> <% @bourbon.stockists.uniq.each do |stockist| %>
 
+</br>
 <%= stockist.name  %></br>
 <%= stockist.address  %></br>
-<% end %> </h4>
+<% end %>
 
 </div>
 <%
