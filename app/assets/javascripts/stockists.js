@@ -8,6 +8,7 @@
 $( document ).on('turbolinks:load', function() {
   console.log("It works on each visit!")
 	listenForStockistClick()
+  listenForFormSubmit()
 });
 
 ////$('form#new_stockist').on("submit", function(e){
@@ -69,13 +70,18 @@ Stockist.prototype.renderLI = function(){
 return Stockist.template(this)
 }
 
-$(document).ready(function(){
+function listenForFormSubmit(e) {
 $('form#new_stockist').on("submit", function(e){
   alert("You clicked SUBMIT!!")
   e.preventDefault()
   var $form = $(this);
   var action = $form.attr('action');
   var params = $form.serialize();
+
+
+
+
+
 
   //function resetform() {
   //document.getElementById("stockist-form")[0].reset();
@@ -109,7 +115,7 @@ console.log('you broke it?', response)
 
 $("#new_stockist")[0].reset();
 })
-})
+}
 
 
 
