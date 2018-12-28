@@ -5,10 +5,10 @@
 </head>
 
 <body>
-<h1> Stockists Index </h1>
+<h3> Stockists Index </h3>
 <br>
 
-<h3> Add New Stockist Form </h3>
+<h6> Add New Stockist Form </h6>
 
 <div id="stockist-form">
 
@@ -28,7 +28,7 @@
 
 <script id="stockist-template" type="text/x-handlebars-template">
   <div class="name">
-    <h1>{{name}}</h1>
+    <h4>{{name}}</h4>
     <div class="address">
       {{address}}
     </div>
@@ -36,10 +36,18 @@
 </script>
 
 
+
 <div id='stockists-index'>
+
+
+
+
 	<% @stockists.each do |stockist| %>
 	<%= link_to stockist.name, stockist_path(stockist), id: stockist.id %><br>
 	<% end %>
-</div>
+
+
+  </div>
+
 
 </body>
