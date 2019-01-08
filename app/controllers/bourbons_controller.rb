@@ -19,7 +19,7 @@ end
            @bourbons = @distillery.bourbons #nested resource route
            #render 'bourbons/index', :layout => false
         render :json => @bourbons
-       
+
          end
     else
     @bourbons = Bourbon.all
@@ -38,7 +38,7 @@ end
 
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @bourbon}
+      format.json { render json: @bourbon }
   end
 end
 end
@@ -79,15 +79,18 @@ end
   def edit
     if params[:distillery_id]
     @distillery = Distillery.find_by(params[:distillery_id])
+    render layout: false
     if distillery.nil?
       redirect_to distilleries_path, alert: 'Distillery not found.'
     else
       @bourbon = distillery.bourbons.find_by(id: params[:id])
+      render layout: false
       redirect_to distillery_bourbons_path(distillery), alert: 'Bourbon not found.' if
       @bourbon.nil?
       end
     else
     @bourbon = Bourbon.find(params[:id])
+    render layout: false
     end
   end
 
