@@ -1,121 +1,100 @@
 
-//$(() => {
-	// listenForSubmit()
-	//console.log('stockists.js loaded')
-	//listenForStockistClick()
-//});
 
 $( document ).on('turbolinks:load', function() {
-  console.log("It works on each visit!")
+
 	listenForStockistClick()
   listenForFormSubmit()
+
+	Stockist.templateSource = $('#stockist-template').html()
+	console.log("Stockist.templateSource", Stockist.templateSource )
+	Stockist.template = Handlebars.compile(Stockist.templateSource);
 });
 
-////$('form#new_stockist').on("submit", function(e){
-  //alert("You clicked SUBMIT!!")
-
+//clearOutStockistsDiv
 function clearOutStockistsDiv() {
 	document.getElementById('stockist-detail').innerHTML = ''
 }
 
+//listenForStockistClick
 function listenForStockistClick(e) {
-	$('div#stockists-index a').on('click', function (e) {
-    alert("You clicked SUBMIT!!")
+		$('div#stockists-index a').on('click', function (e) {
 		e.preventDefault()
 		let id = this.attributes[0].textContent
 		getStockistDetails(id)
 	})
 }
 
-// 1st way ....
+//getStockistDetails
 function getStockistDetails(id) {
-	$.ajax({
+		$.ajax({
 		type: "get",
 		url: '/stockists/' + id,
 		dataType: 'json',
 		success: function (response) {
-			console.log("response: ", response)
-			loadStockistDetails(response)
+		console.log("response: ", response)
+
+		loadStockistDetails(response)
+		   }
+		 })
 		}
-	})
-}
 
-
+//loadStockistDetails
 function loadStockistDetails(data) {
-	clearOutStockistsDiv()
-	let dataHTML = (`
-		<fieldset>
-			<p>${data.name}</p>
-			<p>${data.address}</p>
-		</fieldset>
-	`)
+	   	clearOutStockistsDiv()
 
-	document.getElementById('stockist-detail').innerHTML += dataHTML
-}
+	     let dataHTML = (`
+						<fieldset>
+						<p>${data.name}</p>
+						<p>${data.address}</p>
+						</fieldset>
+						`)
 
+			document.getElementById('stockist-detail').innerHTML += dataHTML
+		}
 
+//CONSTRUCTOR
   function Stockist(attributes){
-this.name = attributes.name;
-this.id = attributes.id;
-this.address = attributes.address;
-}
+			this.name = attributes.name;
+			this.id = attributes.id;
+			this.address = attributes.address;
+     }
 
-$(function(){
-Stockist.templateSource = $('#stockist-template').html()
-Stockist.template = Handlebars.compile(Stockist.templateSource);
-})
-
-
+// renderLI
 Stockist.prototype.renderLI = function(){
-return Stockist.template(this)
-}
+		return Stockist.template(this)
+     }
 
+// listenForFormSubmit
 function listenForFormSubmit(e) {
-$('form#new_stockist').on("submit", function(e){
-  alert("You clicked SUBMIT!!")
-  e.preventDefault()
-  var $form = $(this);
-  var action = $form.attr('action');
-  var params = $form.serialize();
+		$('form#new_stockist').on("submit", function(e){
+  	e.preventDefault()
+  	var $form = $(this);
+  	var action = $form.attr('action');
+  	var params = $form.serialize();
 
+  	console.log("params: ", params);
 
-
-
-
-
-  //function resetform() {
-  //document.getElementById("stockist-form")[0].reset();
-  //}
-  console.log("params: ", params);
-  $.ajax({
-    type: 'POST',
-    url: action,
-    data: params,
-    dataType: 'json'
-  })
+  	$.ajax({
+    	type: 'POST',
+    	url: action,
+    	data: params,
+    	dataType: 'json'
+  	})
 
   .success(function (json) {
+    	console.log('json: ', json);
+    	var newstockist = new Stockist(json);
+    	var stockistLi = newstockist.renderLI()
+			$('ul.new-stockist').append(stockistLi)
+		})
 
-    console.log('json: ', json);
-    var newstockist = new Stockist(json);
-    var stockistLi = newstockist.renderLI()
-
-
-$('ul.new-stockist').append(stockistLi)
-})
-.error(function(response){
-console.log('you broke it?', response)
-});
-//$("#stockist-name").val("")
-//$("#stockist-address").val("")
-
-//$('#stockist-form').each(function(){
-    //this.reset();
-//});
-
-$("#new_stockist")[0].reset();
-})
-}
+		.error(function(response){
+			console.log('you broke it?', response)
+	});
+// clear form
+	$("#new_stockist")[0].reset();
+	})
+	}
 
 
 

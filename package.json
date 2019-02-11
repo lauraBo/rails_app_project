@@ -1,5 +1,8 @@
 {
   "name": "BourbonFinder",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "babel-plugin-transform-react-jsx": "^6.24.1"
+  }
 }
